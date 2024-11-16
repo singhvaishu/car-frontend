@@ -108,7 +108,7 @@ const Signup = () => {
                 <Typography variant="body1"><strong>Username:</strong> vaishali</Typography>
                 <Typography variant="body1"><strong>Email:</strong> vaishali123@gmail.com</Typography>
                 <Typography variant="body1"><strong>Password:</strong> vai123@</Typography>
-                <Typography variant="body1"><strong>Password:</strong> vai123@</Typography>
+            
                 {/* Note to guide user */}
                 <Typography variant="body2" sx={{ marginTop: 2, color: 'gray' }}>
                     Note: To check the functionality, please go to the login page and log in with the existing details.
