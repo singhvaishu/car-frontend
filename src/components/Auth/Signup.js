@@ -1,18 +1,25 @@
 import React, { useState } from 'react';
-import { TextField, Button, Container, Typography, Box, Grid } from '@mui/material';
+import { TextField, Button, Container, Typography, Box, Grid, Link } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { signUp } from '../../api/api';
 
 const Signup = () => {
     const [formData, setFormData] = useState({ username: '', email: '', password: '' });
     const navigate = useNavigate();
+    const [error, setError] = useState('');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setError('');
         try {
             await signUp(formData); // Assuming signUp is a function that handles signup
             navigate('/login'); // Redirect to login page upon successful signup
         } catch (error) {
+            if (error.response && error.response.status === 500) { // Check for "user already exists" error
+                setError('User already exists. Please login instead.');
+            } else {
+                setError('Signup failed. Please try again.');
+            }
             console.error("Signup failed:", error); // Handle any errors that might occur
         }
     };
@@ -51,6 +58,8 @@ const Signup = () => {
                                 fullWidth
                                 value={formData.email}
                                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                                error={!!error} // Show red border if there's an error
+                                helperText={error} // Display error message below the field
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -73,6 +82,14 @@ const Signup = () => {
                                 Signup
                             </Button>
                         </Grid>
+                        <Grid item xs={12} textAlign="center">
+                            <Typography variant="body2">
+                                Already have an account?{' '}
+                                <Link href="/login" color="primary">
+                                    Login
+                                </Link>
+                            </Typography>
+                        </Grid>
                     </Grid>
                 </form>
             </Box>
@@ -88,9 +105,14 @@ const Signup = () => {
                 }}
             >
                 <Typography variant="h6" gutterBottom>Details</Typography>
-                <Typography variant="body1"><strong>Email:</strong> vaishali123@gmail.com</Typography>
                 <Typography variant="body1"><strong>Username:</strong> vaishali</Typography>
+                <Typography variant="body1"><strong>Email:</strong> vaishali123@gmail.com</Typography>
                 <Typography variant="body1"><strong>Password:</strong> vai123@</Typography>
+                <Typography variant="body1"><strong>Password:</strong> vai123@</Typography>
+                {/* Note to guide user */}
+                <Typography variant="body2" sx={{ marginTop: 2, color: 'gray' }}>
+                    Note: To check the functionality, please go to the login page and log in with the existing details.
+                </Typography>
             </Box>
         </Container>
     );
