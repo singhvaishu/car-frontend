@@ -76,6 +76,22 @@ const Signup = () => {
                     </Grid>
                 </form>
             </Box>
+            {/* Container to display user details for check  */}
+            <Box
+                sx={{
+                    marginTop: 5,
+                    padding: 3,
+                    borderRadius: 2,
+                    boxShadow: 3,
+                    backgroundColor: 'lightgray',
+                    textAlign: 'center',
+                }}
+            >
+                <Typography variant="h6" gutterBottom>Details</Typography>
+                <Typography variant="body1"><strong>Email:</strong> vaishali123@gmail.com</Typography>
+                <Typography variant="body1"><strong>Username:</strong> vaishali</Typography>
+                <Typography variant="body1"><strong>Password:</strong> vai123@</Typography>
+            </Box>
         </Container>
     );
 };

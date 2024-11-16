@@ -89,7 +89,7 @@ const EditCar = () => {
                             <Typography variant="h6">Current Car Images</Typography>
                             <Grid container spacing={2} sx={{ marginTop: 2 }}>
                                 {images.map((image, index) => {
-                                    const imageUrl = `http://localhost:5000/${image.replace(/\\/g, '/')}`;
+                                    const imageUrl = `https://car-backend-sftj.onrender.com/${image.replace(/\\/g, '/')}`;
                                     return (
                                         <Grid item key={index} xs={12} sm={6} md={4}>
                                             <Card sx={{ maxWidth: 345 }}>
